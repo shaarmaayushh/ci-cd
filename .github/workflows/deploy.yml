@@ -5,6 +5,7 @@ on:
     branches:
       - master  # Adjusted to trigger on pushes to master
 
+
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
@@ -25,18 +26,8 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: ayush7651/cd-test:latest
-
+        
     - name: Verify Pushed Image
       run: docker pull ayush7651/cd-test:latest
 
-    # - name: Deploy to EC2
-    #   uses: appleboy/ssh-action@master
-    #   with:
-    #     host: ${{ secrets.SSH_HOST }}
-    #     username: ${{ secrets.SSH_USERNAME }}
-    #     key: ${{ secrets.SSH_KEY }}
-    #     script: |
-    #       sudo docker pull 100xdevs/web-app:latest
-    #       sudo docker stop web-app || true
-    #       sudo docker rm web-app || true
-    #       sudo docker run -d --name web-app -p 3005:3000 100xdevs/web-app:latest
+    
